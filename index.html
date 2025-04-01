@@ -5,49 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Приглашение на свадьбу</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Playfair+Display:wght@500&display=swap');
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Playfair Display', serif;
             text-align: center;
-            background: url('https://source.unsplash.com/1600x900/?wedding') no-repeat center center;
-            background-size: cover;
-            color: white;
+            background-color: #f8f5f2;
+            color: #5a5a5a;
             padding: 50px;
         }
         .container {
-            background: rgba(0, 0, 0, 0.7);
+            background: white;
             padding: 30px;
             border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             display: inline-block;
+            max-width: 500px;
+        }
+        .floral {
+            width: 100px;
+            margin-bottom: 20px;
         }
         h1 {
+            font-family: 'Dancing Script', cursive;
             font-size: 2.5em;
+            color: #8b5e3b;
         }
         .details {
             font-size: 1.2em;
-            margin: 20px 0;
+            margin: 15px 0;
         }
         .rsvp-button {
-            background: #ff4081;
+            background: #d4a373;
             color: white;
             border: none;
-            padding: 15px 30px;
+            padding: 12px 25px;
             font-size: 1.2em;
             cursor: pointer;
             border-radius: 10px;
             transition: 0.3s;
+            font-family: 'Playfair Display', serif;
         }
         .rsvp-button:hover {
-            background: #d81b60;
+            background: #b07d56;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Приглашаем вас на нашу свадьбу!</h1>
-        <p class="details">💍 <strong>Алексей & Екатерина</strong> 💍</p>
-        <p class="details">📅 <strong>20 июля 2025</strong></p>
-        <p class="details">📍 <strong>Загородный клуб "Райский уголок"</strong></p>
-        <button class="rsvp-button" onclick="alert('Спасибо за подтверждение!')">Подтвердить участие</button>
-    </div>
+<div class="container">
+    <img src="https://source.unsplash.com/100x100/?flowers,wedding" alt="Флористика" class="floral">
+    <h1>Дорогие друзья!</h1>
+    <p class="details">Приглашаем вас на нашу свадьбу!</p>
+    <p class="details">Мы будем счастливы, если вы разделите с нами радость этого дня.</p>
+    <p class="details"><strong>20 июня 2025 года</strong></p>
+    <p class="details">📍 Ивент-площадка "Зелёный берег"</p>
+    <p class="details">14:00</p>
+    <button class="rsvp-button" onclick="alert('Спасибо за подтверждение!')">Подтвердить участие</button>
+    <p style="margin-top: 20px; font-style: italic; font-size: 1.2em;">С любовью,<br>Алексей и Мария</p>
+</div>
 </body>
 </html>
