@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Приглашение на свадьбу</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: url('https://source.unsplash.com/1600x900/?wedding') no-repeat center center;
+            background-size: cover;
+            color: white;
+            padding: 50px;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 15px;
+            display: inline-block;
+        }
+        h1 {
+            font-size: 2.5em;
+        }
+        .details {
+            font-size: 1.2em;
+            margin: 20px 0;
+        }
+        .rsvp-button {
+            background: #ff4081;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+        .rsvp-button:hover {
+            background: #d81b60;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Приглашаем вас на нашу свадьбу!</h1>
+        <p class="details">💍 <strong>Алексей & Екатерина</strong> 💍</p>
+        <p class="details">📅 <strong>20 июля 2025</strong></p>
+        <p class="details">📍 <strong>Загородный клуб "Райский уголок"</strong></p>
+        <button class="rsvp-button" onclick="alert('Спасибо за подтверждение!')">Подтвердить участие</button>
+    </div>
+</body>
+</html>
