@@ -72,18 +72,6 @@
             const urlParams = new URLSearchParams(window.location.search);
             return urlParams.get(param);
         }
-
-        function confirmAttendance() {
-            const guestName = getQueryParam('guest') || 'Гость';  // Получаем имя из URL
-            fetch('https://script.google.com/macros/s/AKfycbzqkISy78tg_5Pd30oAilS-xu7YZswrRIf2PvdmVf2RGIB3pV50j0L3GK7ioaXBdKsX/exec', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ guest: guestName, response: 'Принято' })
-            })
-            .then(response => response.text())
-            .then(data => alert('Спасибо за подтверждение, ' + guestName + '!'))
-            .catch(error => alert('Ошибка отправки ответа'));
-        }
     </script>
 </head>
 <body>
@@ -95,7 +83,14 @@
     <p class="details"><strong>20 июня 2025 года</strong></p>
     <p class="details">📍 Ивент-площадка "Зелёный берег"</p>
     <p class="details">14:00</p>
-    <button class="rsvp-button" onclick="confirmAttendance()">Подтвердить участие</button>
+
+    <!-- Форма для подтверждения -->
+    <form action="https://script.google.com/macros/s/AKfycbwxNj2YnIOI2PAUW1n9fgFrpSASeVIku16EyJAFAuM8p8k9ciF6bF_dG9jf75a0JAVk/exec" method="POST">
+        <input type="hidden" name="guest" value="" id="guestNameInput">
+        <input type="hidden" name="response" value="Принято">
+        <button type="submit" class="rsvp-button" onclick="document.getElementById('guestNameInput').value = getQueryParam('guest') || 'Гость'">Подтвердить участие</button>
+    </form>
+
     <p style="margin-top: 20px; font-style: italic; font-size: 1.2em;">С любовью,<br>Алексей и Мария</p>
 </div>
 </body>
