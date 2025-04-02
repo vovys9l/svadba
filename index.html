@@ -67,17 +67,35 @@
             }
         }
     </style>
+    <script>
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        function confirmAttendance() {
+            const guestName = getQueryParam('guest') || 'Гость';
+            fetch('https://script.google.com/macros/s/AKfycbzP6_JuKjVdbH01KUDHGQxrj1J266Z4AbKu-4uRXHeXJVtrogXso3CoaNcD7k3nZuMM/exec', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ guest: guestName, response: 'Принято' })
+            })
+            .then(response => response.text())
+            .then(data => alert('Спасибо за подтверждение, ' + guestName + '!'))
+            .catch(error => alert('Ошибка отправки ответа'));
+        }
+    </script>
 </head>
 <body>
 <div class="container">
     <img src="./flowers.png" alt="Флористика" class="floral">
-    <h1>Дорогие друзья!</h1>
+    <h1 id="greeting">Дорогие друзья!</h1>
     <p class="details">Приглашаем вас на нашу свадьбу!</p>
     <p class="details">Мы будем счастливы, если вы разделите с нами радость этого дня.</p>
     <p class="details"><strong>20 июня 2025 года</strong></p>
     <p class="details">📍 Ивент-площадка "Зелёный берег"</p>
     <p class="details">14:00</p>
-    <button class="rsvp-button" onclick="alert('Спасибо за подтверждение!')">Подтвердить участие</button>
+    <button class="rsvp-button" onclick="confirmAttendance()">Подтвердить участие</button>
     <p style="margin-top: 20px; font-style: italic; font-size: 1.2em;">С любовью,<br>Алексей и Мария</p>
 </div>
 </body>
