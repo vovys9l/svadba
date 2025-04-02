@@ -75,7 +75,7 @@
 
         function confirmAttendance() {
             const guestName = getQueryParam('guest') || 'Гость';  // Получаем имя из URL
-            fetch('https://script.google.com/macros/s/AKfycbwxNj2YnIOI2PAUW1n9fgFrpSASeVIku16EyJAFAuM8p8k9ciF6bF_dG9jf75a0JAVk/exec', {
+            fetch('https://script.google.com/macros/s/AKfycbzqkISy78tg_5Pd30oAilS-xu7YZswrRIf2PvdmVf2RGIB3pV50j0L3GK7ioaXBdKsX/exec', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ guest: guestName, response: 'Принято' })
