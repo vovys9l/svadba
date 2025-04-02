@@ -9,21 +9,23 @@
         body {
             font-family: 'Playfair Display', serif;
             text-align: center;
-            background-color: #f8f5f2;
+            background: url('https://source.unsplash.com/1080x1920/?boho,wedding') no-repeat center center/cover;
             color: #5a5a5a;
-            padding: 50px;
+            padding: 20px;
+            margin: 0;
         }
         .container {
-            background: white;
+            background: rgba(255, 255, 255, 0.9);
             padding: 30px;
             border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             display: inline-block;
-            max-width: 500px;
+            max-width: 90%;
+            width: 450px;
+            box-shadow: none;
         }
         .floral {
             width: 100px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         h1 {
             font-family: 'Dancing Script', cursive;
@@ -32,7 +34,7 @@
         }
         .details {
             font-size: 1.2em;
-            margin: 15px 0;
+            margin: 10px 0;
         }
         .rsvp-button {
             background: #d4a373;
@@ -47,6 +49,22 @@
         }
         .rsvp-button:hover {
             background: #b07d56;
+        }
+        @media (max-width: 480px) {
+            .container {
+                width: 90%;
+                padding: 20px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            .details {
+                font-size: 1em;
+            }
+            .rsvp-button {
+                font-size: 1em;
+                padding: 10px 20px;
+            }
         }
     </style>
 </head>
