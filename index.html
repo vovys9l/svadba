@@ -66,16 +66,52 @@
                 padding: 10px 20px;
             }
         }
+
+        /* Стиль для экрана с надписью "Ждем тебя!" */
+        .thank-you-container {
+            display: none; /* Скрыт по умолчанию */
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 50px;
+            border-radius: 15px;
+            max-width: 90%;
+            width: 450px;
+            box-shadow: none;
+            margin-top: 20px;
+        }
+        .thank-you-message {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2em;
+            color: #8b5e3b;
+        }
     </style>
     <script>
         function getQueryParam(param) {
             const urlParams = new URLSearchParams(window.location.search);
             return urlParams.get(param);
         }
+
+        function confirmAttendance() {
+            const guestName = getQueryParam('guest') || 'Гость';
+
+            // Отправка данных в Google Apps Script
+            fetch('https://script.google.com/macros/s/AKfycbytq8vgyy4DptWA3ILHxnsvSFhZHbEdXHtZAyHfhdZSVdFDwT65GuvAiHMFM3hqr3Qk/exec', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ guest: guestName, response: 'Принято' })
+            })
+            .then(response => response.text())
+            .then(data => {
+                // Показать сообщение "Ждем тебя!"
+                document.getElementById('thank-you-container').style.display = 'block';
+                // Скрыть основной контент
+                document.getElementById('main-content').style.display = 'none';
+            })
+            .catch(error => alert('Ошибка отправки ответа'));
+        }
     </script>
 </head>
 <body>
-<div class="container">
+<div id="main-content" class="container">
     <img src="./flowers.png" alt="Флористика" class="floral">
     <h1 id="greeting">Дорогие друзья!</h1>
     <p class="details">Приглашаем вас на нашу свадьбу!</p>
@@ -85,7 +121,7 @@
     <p class="details">14:00</p>
 
     <!-- Форма для подтверждения -->
-    <form action="https://script.google.com/macros/s/AKfycbytq8vgyy4DptWA3ILHxnsvSFhZHbEdXHtZAyHfhdZSVdFDwT65GuvAiHMFM3hqr3Qk/exec" method="POST">
+    <form action="https://script.google.com/macros/s/AKfycbytq8vgyy4DptWA3ILHxnsvSFhZHbEdXHtZAyHfhdZSVdFDwT65GuvAiHMFM3hqr3Qk/exec" method="POST" onsubmit="confirmAttendance(); return false;">
         <input type="hidden" name="guest" value="" id="guestNameInput">
         <input type="hidden" name="response" value="Принято">
         <button type="submit" class="rsvp-button" onclick="document.getElementById('guestNameInput').value = getQueryParam('guest') || 'Гость'">Подтвердить участие</button>
@@ -93,5 +129,11 @@
 
     <p style="margin-top: 20px; font-style: italic; font-size: 1.2em;">С любовью,<br>Алексей и Мария</p>
 </div>
+
+<!-- Экран "Ждем тебя!" -->
+<div id="thank-you-container" class="thank-you-container">
+    <h2 class="thank-you-message">Ждем тебя!</h2>
+</div>
+
 </body>
 </html>
