@@ -84,31 +84,6 @@
             color: #8b5e3b;
         }
     </style>
-    <script>
-        function getQueryParam(param) {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get(param);
-        }
-
-        function confirmAttendance() {
-            const guestName = getQueryParam('guest') || 'Гость';
-
-            // Отправка данных в Google Apps Script
-            fetch('https://script.google.com/macros/s/AKfycbytq8vgyy4DptWA3ILHxnsvSFhZHbEdXHtZAyHfhdZSVdFDwT65GuvAiHMFM3hqr3Qk/exec', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ guest: guestName, response: 'Принято' })
-            })
-            .then(response => response.text())
-            .then(data => {
-                // Показать сообщение "Ждем тебя!"
-                document.getElementById('thank-you-container').style.display = 'block';
-                // Скрыть основной контент
-                document.getElementById('main-content').style.display = 'none';
-            })
-            .catch(error => alert('Ошибка отправки ответа'));
-        }
-    </script>
 </head>
 <body>
 <div id="main-content" class="container">
@@ -121,7 +96,7 @@
     <p class="details">14:00</p>
 
     <!-- Форма для подтверждения -->
-    <form action="https://script.google.com/macros/s/AKfycbytq8vgyy4DptWA3ILHxnsvSFhZHbEdXHtZAyHfhdZSVdFDwT65GuvAiHMFM3hqr3Qk/exec" method="POST" onsubmit="confirmAttendance(); return false;">
+    <form action="https://script.google.com/macros/s/AKfycbytq8vgyy4DptWA3ILHxnsvSFhZHbEdXHtZAyHfhdZSVdFDwT65GuvAiHMFM3hqr3Qk/exec" method="POST" onsubmit="document.getElementById('main-content').style.display = 'none'; document.getElementById('thank-you-container').style.display = 'block';">
         <input type="hidden" name="guest" value="" id="guestNameInput">
         <input type="hidden" name="response" value="Принято">
         <button type="submit" class="rsvp-button" onclick="document.getElementById('guestNameInput').value = getQueryParam('guest') || 'Гость'">Подтвердить участие</button>
